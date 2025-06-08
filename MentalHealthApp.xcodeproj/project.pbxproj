@@ -6,6 +6,51 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		800E69D92DE6AD6D00CE5726 /* EditLifesaversView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E69D82DE6AD6D00CE5726 /* EditLifesaversView.swift */; };
+		800E69DD2DE6B31C00CE5726 /* LifesaverStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E69DC2DE6B31C00CE5726 /* LifesaverStore.swift */; };
+		801028A22DE2A29D005B7A46 /* OnboardingResumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801028A12DE2A29D005B7A46 /* OnboardingResumeView.swift */; };
+		80209E792DDD5A0C00E01946 /* WelcomeIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80209E782DDD5A0C00E01946 /* WelcomeIdentityView.swift */; };
+		80209E802DDD754B00E01946 /* checkinlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 80209E7F2DDD754B00E01946 /* checkinlogo.png */; };
+		80209E852DDD79C600E01946 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80209E842DDD79C600E01946 /* assets.xcassets */; };
+		80209E892DDE3F2C00E01946 /* TutorialSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80209E882DDE3F2C00E01946 /* TutorialSliderView.swift */; };
+		80209E8B2DDE469300E01946 /* CheckInCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80209E8A2DDE469300E01946 /* CheckInCompleteView.swift */; };
+		804BEC7D2DE7F54F00979E19 /* RiskEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804BEC7C2DE7F54F00979E19 /* RiskEngine.swift */; };
+		804BEC7F2DE7FB0700979E19 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804BEC7E2DE7FB0700979E19 /* AlertManager.swift */; };
+		8051E3292DDB750C00EA6A48 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3282DDB750C00EA6A48 /* UserProfile.swift */; };
+		8051E32B2DDB753F00EA6A48 /* TrustedContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E32A2DDB753F00EA6A48 /* TrustedContact.swift */; };
+		8051E32D2DDB755300EA6A48 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E32C2DDB755300EA6A48 /* CheckIn.swift */; };
+		8051E3312DDB758500EA6A48 /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3302DDB758500EA6A48 /* CreateProfileView.swift */; };
+		8051E3332DDB759800EA6A48 /* BaselineSurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3322DDB759800EA6A48 /* BaselineSurveyView.swift */; };
+		8051E3352DDB75AB00EA6A48 /* AddLifesaversView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3342DDB75AB00EA6A48 /* AddLifesaversView.swift */; };
+		8051E3372DDB75C000EA6A48 /* HomeCheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3362DDB75C000EA6A48 /* HomeCheckInView.swift */; };
+		8051E3392DDB75CF00EA6A48 /* JournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3382DDB75CF00EA6A48 /* JournalEntryView.swift */; };
+		8051E33B2DDB75E000EA6A48 /* CheckInSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E33A2DDB75E000EA6A48 /* CheckInSummaryView.swift */; };
+		8051E33D2DDB760A00EA6A48 /* AlertUserPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E33C2DDB760A00EA6A48 /* AlertUserPromptView.swift */; };
+		8051E33F2DDB761900EA6A48 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E33E2DDB761900EA6A48 /* ConfirmationView.swift */; };
+		8051E3412DDB762800EA6A48 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3402DDB762800EA6A48 /* SettingsView.swift */; };
+		8051E3432DDB763900EA6A48 /* SupportResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3422DDB763900EA6A48 /* SupportResourcesView.swift */; };
+		8051E3452DDB770600EA6A48 /* CheckInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3442DDB770600EA6A48 /* CheckInViewModel.swift */; };
+		8051E34B2DDB774600EA6A48 /* MentalHealthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E34A2DDB774600EA6A48 /* MentalHealthApp.swift */; };
+		8051E34D2DDB78F000EA6A48 /* WelcomeLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E34C2DDB78F000EA6A48 /* WelcomeLogoView.swift */; };
+		8051E34F2DDB8E8200EA6A48 /* CopingSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E34E2DDB8E8200EA6A48 /* CopingSupportView.swift */; };
+		8051E3512DDB8EE300EA6A48 /* CrisisResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3502DDB8EE300EA6A48 /* CrisisResourcesView.swift */; };
+		8051E3532DDB8FB300EA6A48 /* CheckInStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3522DDB8FB300EA6A48 /* CheckInStore.swift */; };
+		8051E3552DDB950F00EA6A48 /* HighRiskSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3542DDB950F00EA6A48 /* HighRiskSupportView.swift */; };
+		8051E3572DDB96B200EA6A48 /* CheckInHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3562DDB96B200EA6A48 /* CheckInHistoryView.swift */; };
+		8051E3592DDB96D300EA6A48 /* CheckInDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3582DDB96D300EA6A48 /* CheckInDetailView.swift */; };
+		8051E35B2DDBA04100EA6A48 /* WelcomeIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E35A2DDBA04100EA6A48 /* WelcomeIntroView.swift */; };
+		8051E35D2DDBAA1500EA6A48 /* UserProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E35C2DDBAA1500EA6A48 /* UserProfileStore.swift */; };
+		8051E3602DDBADDA00EA6A48 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E35F2DDBADDA00EA6A48 /* DashboardView.swift */; };
+		8051E3622DDBAEEF00EA6A48 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3612DDBAEEF00EA6A48 /* NotificationManager.swift */; };
+		8051E3642DDBF52400EA6A48 /* TrendAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3632DDBF52400EA6A48 /* TrendAnalysisView.swift */; };
+		8051E3672DDC030A00EA6A48 /* MoodCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3662DDC030A00EA6A48 /* MoodCalendarView.swift */; };
+		8051E3692DDC052800EA6A48 /* PDFExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3682DDC052800EA6A48 /* PDFExporter.swift */; };
+		8051E36E2DDC0CA500EA6A48 /* ResourcesAndLearningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E36D2DDC0CA500EA6A48 /* ResourcesAndLearningView.swift */; };
+		8051E3702DDC0CB900EA6A48 /* CrisisSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E36F2DDC0CB900EA6A48 /* CrisisSupportView.swift */; };
+		8051E3732DDC168000EA6A48 /* SharedUIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3722DDC168000EA6A48 /* SharedUIComponents.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8051E3032DDB71B400EA6A48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,28 +69,52 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		800E69D82DE6AD6D00CE5726 /* EditLifesaversView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLifesaversView.swift; sourceTree = "<group>"; };
+		800E69DC2DE6B31C00CE5726 /* LifesaverStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifesaverStore.swift; sourceTree = "<group>"; };
+		801028A12DE2A29D005B7A46 /* OnboardingResumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingResumeView.swift; sourceTree = "<group>"; };
+		80209E782DDD5A0C00E01946 /* WelcomeIdentityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeIdentityView.swift; sourceTree = "<group>"; };
+		80209E7F2DDD754B00E01946 /* checkinlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkinlogo.png; sourceTree = "<group>"; };
+		80209E842DDD79C600E01946 /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
+		80209E882DDE3F2C00E01946 /* TutorialSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialSliderView.swift; sourceTree = "<group>"; };
+		80209E8A2DDE469300E01946 /* CheckInCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInCompleteView.swift; sourceTree = "<group>"; };
+		804BEC7C2DE7F54F00979E19 /* RiskEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskEngine.swift; sourceTree = "<group>"; };
+		804BEC7E2DE7FB0700979E19 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		8051E2F02DDB71B200EA6A48 /* MentalHealthApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalHealthApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8051E3022DDB71B400EA6A48 /* MentalHealthAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentalHealthAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8051E30C2DDB71B400EA6A48 /* MentalHealthAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentalHealthAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8051E3282DDB750C00EA6A48 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		8051E32A2DDB753F00EA6A48 /* TrustedContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedContact.swift; sourceTree = "<group>"; };
+		8051E32C2DDB755300EA6A48 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
+		8051E3302DDB758500EA6A48 /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
+		8051E3322DDB759800EA6A48 /* BaselineSurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaselineSurveyView.swift; sourceTree = "<group>"; };
+		8051E3342DDB75AB00EA6A48 /* AddLifesaversView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLifesaversView.swift; sourceTree = "<group>"; };
+		8051E3362DDB75C000EA6A48 /* HomeCheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCheckInView.swift; sourceTree = "<group>"; };
+		8051E3382DDB75CF00EA6A48 /* JournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryView.swift; sourceTree = "<group>"; };
+		8051E33A2DDB75E000EA6A48 /* CheckInSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInSummaryView.swift; sourceTree = "<group>"; };
+		8051E33C2DDB760A00EA6A48 /* AlertUserPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUserPromptView.swift; sourceTree = "<group>"; };
+		8051E33E2DDB761900EA6A48 /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
+		8051E3402DDB762800EA6A48 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8051E3422DDB763900EA6A48 /* SupportResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportResourcesView.swift; sourceTree = "<group>"; };
+		8051E3442DDB770600EA6A48 /* CheckInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewModel.swift; sourceTree = "<group>"; };
+		8051E34A2DDB774600EA6A48 /* MentalHealthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalHealthApp.swift; sourceTree = "<group>"; };
+		8051E34C2DDB78F000EA6A48 /* WelcomeLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeLogoView.swift; sourceTree = "<group>"; };
+		8051E34E2DDB8E8200EA6A48 /* CopingSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopingSupportView.swift; sourceTree = "<group>"; };
+		8051E3502DDB8EE300EA6A48 /* CrisisResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrisisResourcesView.swift; sourceTree = "<group>"; };
+		8051E3522DDB8FB300EA6A48 /* CheckInStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInStore.swift; sourceTree = "<group>"; };
+		8051E3542DDB950F00EA6A48 /* HighRiskSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighRiskSupportView.swift; sourceTree = "<group>"; };
+		8051E3562DDB96B200EA6A48 /* CheckInHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInHistoryView.swift; sourceTree = "<group>"; };
+		8051E3582DDB96D300EA6A48 /* CheckInDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInDetailView.swift; sourceTree = "<group>"; };
+		8051E35A2DDBA04100EA6A48 /* WelcomeIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeIntroView.swift; sourceTree = "<group>"; };
+		8051E35C2DDBAA1500EA6A48 /* UserProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileStore.swift; sourceTree = "<group>"; };
+		8051E35F2DDBADDA00EA6A48 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		8051E3612DDBAEEF00EA6A48 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		8051E3632DDBF52400EA6A48 /* TrendAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendAnalysisView.swift; sourceTree = "<group>"; };
+		8051E3662DDC030A00EA6A48 /* MoodCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCalendarView.swift; sourceTree = "<group>"; };
+		8051E3682DDC052800EA6A48 /* PDFExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExporter.swift; sourceTree = "<group>"; };
+		8051E36D2DDC0CA500EA6A48 /* ResourcesAndLearningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesAndLearningView.swift; sourceTree = "<group>"; };
+		8051E36F2DDC0CB900EA6A48 /* CrisisSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrisisSupportView.swift; sourceTree = "<group>"; };
+		8051E3722DDC168000EA6A48 /* SharedUIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUIComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		8051E2F22DDB71B200EA6A48 /* MentalHealthApp */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MentalHealthApp;
-			sourceTree = "<group>";
-		};
-		8051E3052DDB71B400EA6A48 /* MentalHealthAppTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MentalHealthAppTests;
-			sourceTree = "<group>";
-		};
-		8051E30F2DDB71B400EA6A48 /* MentalHealthAppUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MentalHealthAppUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8051E2ED2DDB71B200EA6A48 /* Frameworks */ = {
@@ -72,12 +141,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		800E69DB2DE6B2EB00CE5726 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				800E69DC2DE6B31C00CE5726 /* LifesaverStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		80209E7C2DDD6ED300E01946 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		8051E2E72DDB71B200EA6A48 = {
 			isa = PBXGroup;
 			children = (
-				8051E2F22DDB71B200EA6A48 /* MentalHealthApp */,
-				8051E3052DDB71B400EA6A48 /* MentalHealthAppTests */,
-				8051E30F2DDB71B400EA6A48 /* MentalHealthAppUITests */,
+				80209E842DDD79C600E01946 /* assets.xcassets */,
+				80209E7F2DDD754B00E01946 /* checkinlogo.png */,
+				800E69DB2DE6B2EB00CE5726 /* Stores */,
+				8051E3232DDB725B00EA6A48 /* AppEntry */,
+				8051E3222DDB724C00EA6A48 /* Utils */,
+				8051E3212DDB724400EA6A48 /* ViewModels */,
+				8051E31F2DDB722A00EA6A48 /* Models */,
 				8051E2F12DDB71B200EA6A48 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +178,146 @@
 				8051E30C2DDB71B400EA6A48 /* MentalHealthAppUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8051E31F2DDB722A00EA6A48 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8051E3282DDB750C00EA6A48 /* UserProfile.swift */,
+				8051E32A2DDB753F00EA6A48 /* TrustedContact.swift */,
+				8051E32C2DDB755300EA6A48 /* CheckIn.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8051E3202DDB723100EA6A48 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8051E3712DDC167000EA6A48 /* Shared */,
+				8051E36A2DDC0AB600EA6A48 /* Support */,
+				8051E3652DDC02FE00EA6A48 /* Calendar */,
+				8051E35E2DDBADC800EA6A48 /* Dashboard */,
+				8051E3272DDB73D900EA6A48 /* Settings */,
+				8051E3252DDB73B500EA6A48 /* CheckIn */,
+				8051E3242DDB73A300EA6A48 /* Onboarding */,
+				8051E3262DDB73BC00EA6A48 /* Alerts */,
+				8051E34C2DDB78F000EA6A48 /* WelcomeLogoView.swift */,
+				80209E7C2DDD6ED300E01946 /* Assets */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8051E3212DDB724400EA6A48 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8051E3442DDB770600EA6A48 /* CheckInViewModel.swift */,
+				8051E3522DDB8FB300EA6A48 /* CheckInStore.swift */,
+				8051E35C2DDBAA1500EA6A48 /* UserProfileStore.swift */,
+				8051E3202DDB723100EA6A48 /* Views */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8051E3222DDB724C00EA6A48 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8051E3612DDBAEEF00EA6A48 /* NotificationManager.swift */,
+				8051E3682DDC052800EA6A48 /* PDFExporter.swift */,
+				804BEC7C2DE7F54F00979E19 /* RiskEngine.swift */,
+				804BEC7E2DE7FB0700979E19 /* AlertManager.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		8051E3232DDB725B00EA6A48 /* AppEntry */ = {
+			isa = PBXGroup;
+			children = (
+				8051E34A2DDB774600EA6A48 /* MentalHealthApp.swift */,
+			);
+			path = AppEntry;
+			sourceTree = "<group>";
+		};
+		8051E3242DDB73A300EA6A48 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				8051E3302DDB758500EA6A48 /* CreateProfileView.swift */,
+				8051E3322DDB759800EA6A48 /* BaselineSurveyView.swift */,
+				8051E3342DDB75AB00EA6A48 /* AddLifesaversView.swift */,
+				8051E35A2DDBA04100EA6A48 /* WelcomeIntroView.swift */,
+				80209E782DDD5A0C00E01946 /* WelcomeIdentityView.swift */,
+				80209E882DDE3F2C00E01946 /* TutorialSliderView.swift */,
+				80209E8A2DDE469300E01946 /* CheckInCompleteView.swift */,
+				801028A12DE2A29D005B7A46 /* OnboardingResumeView.swift */,
+				800E69D82DE6AD6D00CE5726 /* EditLifesaversView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		8051E3252DDB73B500EA6A48 /* CheckIn */ = {
+			isa = PBXGroup;
+			children = (
+				8051E3362DDB75C000EA6A48 /* HomeCheckInView.swift */,
+				8051E3382DDB75CF00EA6A48 /* JournalEntryView.swift */,
+				8051E33A2DDB75E000EA6A48 /* CheckInSummaryView.swift */,
+				8051E3562DDB96B200EA6A48 /* CheckInHistoryView.swift */,
+				8051E3582DDB96D300EA6A48 /* CheckInDetailView.swift */,
+				8051E3632DDBF52400EA6A48 /* TrendAnalysisView.swift */,
+			);
+			path = CheckIn;
+			sourceTree = "<group>";
+		};
+		8051E3262DDB73BC00EA6A48 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				8051E33C2DDB760A00EA6A48 /* AlertUserPromptView.swift */,
+				8051E33E2DDB761900EA6A48 /* ConfirmationView.swift */,
+				8051E34E2DDB8E8200EA6A48 /* CopingSupportView.swift */,
+				8051E3502DDB8EE300EA6A48 /* CrisisResourcesView.swift */,
+				8051E3542DDB950F00EA6A48 /* HighRiskSupportView.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		8051E3272DDB73D900EA6A48 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8051E3402DDB762800EA6A48 /* SettingsView.swift */,
+				8051E3422DDB763900EA6A48 /* SupportResourcesView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8051E35E2DDBADC800EA6A48 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				8051E35F2DDBADDA00EA6A48 /* DashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		8051E3652DDC02FE00EA6A48 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				8051E3662DDC030A00EA6A48 /* MoodCalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		8051E36A2DDC0AB600EA6A48 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				8051E36D2DDC0CA500EA6A48 /* ResourcesAndLearningView.swift */,
+				8051E36F2DDC0CB900EA6A48 /* CrisisSupportView.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		8051E3712DDC167000EA6A48 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				8051E3722DDC168000EA6A48 /* SharedUIComponents.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,9 +334,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				8051E2F22DDB71B200EA6A48 /* MentalHealthApp */,
 			);
 			name = MentalHealthApp;
 			packageProductDependencies = (
@@ -130,9 +355,6 @@
 			dependencies = (
 				8051E3042DDB71B400EA6A48 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				8051E3052DDB71B400EA6A48 /* MentalHealthAppTests */,
-			);
 			name = MentalHealthAppTests;
 			packageProductDependencies = (
 			);
@@ -153,9 +375,6 @@
 			dependencies = (
 				8051E30E2DDB71B400EA6A48 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				8051E30F2DDB71B400EA6A48 /* MentalHealthAppUITests */,
-			);
 			name = MentalHealthAppUITests;
 			packageProductDependencies = (
 			);
@@ -175,6 +394,7 @@
 				TargetAttributes = {
 					8051E2EF2DDB71B200EA6A48 = {
 						CreatedOnToolsVersion = 16.3;
+						LastSwiftMigration = 1630;
 					};
 					8051E3012DDB71B400EA6A48 = {
 						CreatedOnToolsVersion = 16.3;
@@ -212,6 +432,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80209E852DDD79C600E01946 /* assets.xcassets in Resources */,
+				80209E802DDD754B00E01946 /* checkinlogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +458,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8051E33F2DDB761900EA6A48 /* ConfirmationView.swift in Sources */,
+				8051E3642DDBF52400EA6A48 /* TrendAnalysisView.swift in Sources */,
+				8051E35B2DDBA04100EA6A48 /* WelcomeIntroView.swift in Sources */,
+				8051E3692DDC052800EA6A48 /* PDFExporter.swift in Sources */,
+				8051E3572DDB96B200EA6A48 /* CheckInHistoryView.swift in Sources */,
+				8051E32B2DDB753F00EA6A48 /* TrustedContact.swift in Sources */,
+				801028A22DE2A29D005B7A46 /* OnboardingResumeView.swift in Sources */,
+				8051E3372DDB75C000EA6A48 /* HomeCheckInView.swift in Sources */,
+				800E69D92DE6AD6D00CE5726 /* EditLifesaversView.swift in Sources */,
+				8051E3672DDC030A00EA6A48 /* MoodCalendarView.swift in Sources */,
+				8051E3592DDB96D300EA6A48 /* CheckInDetailView.swift in Sources */,
+				80209E792DDD5A0C00E01946 /* WelcomeIdentityView.swift in Sources */,
+				8051E34B2DDB774600EA6A48 /* MentalHealthApp.swift in Sources */,
+				80209E8B2DDE469300E01946 /* CheckInCompleteView.swift in Sources */,
+				8051E3552DDB950F00EA6A48 /* HighRiskSupportView.swift in Sources */,
+				8051E32D2DDB755300EA6A48 /* CheckIn.swift in Sources */,
+				8051E3352DDB75AB00EA6A48 /* AddLifesaversView.swift in Sources */,
+				8051E3602DDBADDA00EA6A48 /* DashboardView.swift in Sources */,
+				8051E3512DDB8EE300EA6A48 /* CrisisResourcesView.swift in Sources */,
+				804BEC7D2DE7F54F00979E19 /* RiskEngine.swift in Sources */,
+				80209E892DDE3F2C00E01946 /* TutorialSliderView.swift in Sources */,
+				8051E3292DDB750C00EA6A48 /* UserProfile.swift in Sources */,
+				8051E34F2DDB8E8200EA6A48 /* CopingSupportView.swift in Sources */,
+				8051E3392DDB75CF00EA6A48 /* JournalEntryView.swift in Sources */,
+				8051E33D2DDB760A00EA6A48 /* AlertUserPromptView.swift in Sources */,
+				804BEC7F2DE7FB0700979E19 /* AlertManager.swift in Sources */,
+				8051E33B2DDB75E000EA6A48 /* CheckInSummaryView.swift in Sources */,
+				8051E3702DDC0CB900EA6A48 /* CrisisSupportView.swift in Sources */,
+				8051E3622DDBAEEF00EA6A48 /* NotificationManager.swift in Sources */,
+				800E69DD2DE6B31C00CE5726 /* LifesaverStore.swift in Sources */,
+				8051E3732DDC168000EA6A48 /* SharedUIComponents.swift in Sources */,
+				8051E35D2DDBAA1500EA6A48 /* UserProfileStore.swift in Sources */,
+				8051E3412DDB762800EA6A48 /* SettingsView.swift in Sources */,
+				8051E34D2DDB78F000EA6A48 /* WelcomeLogoView.swift in Sources */,
+				8051E3312DDB758500EA6A48 /* CreateProfileView.swift in Sources */,
+				8051E3432DDB763900EA6A48 /* SupportResourcesView.swift in Sources */,
+				8051E3532DDB8FB300EA6A48 /* CheckInStore.swift in Sources */,
+				8051E3452DDB770600EA6A48 /* CheckInViewModel.swift in Sources */,
+				8051E36E2DDC0CA500EA6A48 /* ResourcesAndLearningView.swift in Sources */,
+				8051E3332DDB759800EA6A48 /* BaselineSurveyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,10 +655,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XAD3237276;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = CheckIn;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -410,6 +676,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = JeremyT.MentalHealthApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -420,10 +687,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XAD3237276;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = CheckIn;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
