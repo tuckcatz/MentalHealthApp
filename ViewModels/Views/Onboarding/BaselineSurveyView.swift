@@ -33,6 +33,12 @@ struct BaselineSurveyView: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color("BrandBlue"))
 
+                    Text("This reflects how you typically feel — not just today. We’ll use it to compare future check-ins.")
+                        .font(.subheadline)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.gray)
+                        .padding(.horizontal)
+
                     // Sliders
                     Group {
                         BaselineSlider(title: "Overall Mood", value: $mood)
@@ -56,8 +62,13 @@ struct BaselineSurveyView: View {
 
                     // Note Section
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Anything you'd like us to know?")
-                            .font(.headline)
+                        // Title with light gray for the (e.g...) portion
+                        (
+                            Text("Anything you'd like us to know ") +
+                            Text("(e.g. big life events, stressors, good news, etc.)")
+                                .foregroundColor(.gray)
+                        )
+                        .font(.headline)
 
                         TextEditor(text: $personalNote)
                             .frame(height: 100)

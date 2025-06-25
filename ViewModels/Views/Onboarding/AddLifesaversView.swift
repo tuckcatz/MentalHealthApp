@@ -6,7 +6,7 @@ struct AddLifesaversView: View {
 
     @State private var nameInput: String = ""
     @State private var phoneInput: String = ""
-    @State private var emailInput: String = ""
+    @State private var identifierNote: String = ""
     @State private var navigateToNext = false
 
     var body: some View {
@@ -41,25 +41,30 @@ struct AddLifesaversView: View {
 
                 // Input fields
                 VStack(spacing: 14) {
-                    TextField("Name (required)", text: $nameInput)
+                    TextField("Name", text: $nameInput)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                    TextField("Phone Number (required)", text: $phoneInput)
+                    TextField("Phone Number", text: $phoneInput)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.phonePad)
 
-                    TextField("Email (optional)", text: $emailInput)
+                    TextField("How will they recognize you?", text: $identifierNote)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
 
                     Button(action: {
                         guard isInputValid else { return }
 
-                        let method = "Phone: \(phoneInput)" + (emailInput.isEmpty ? "" : " | Email: \(emailInput)")
-                        lifesaverStore.add(TrustedContact(name: nameInput, contactMethod: method))
+                        let contact = TrustedContact(
+                            name: nameInput,
+                            contactMethod: "Phone: \(phoneInput)",
+                            identifierNote: identifierNote
+                        )
+
+                        lifesaverStore.add(contact)
 
                         nameInput = ""
                         phoneInput = ""
-                        emailInput = ""
+                        identifierNote = ""
                         hideKeyboard()
                     }) {
                         Text("Add Contact")
@@ -85,6 +90,11 @@ struct AddLifesaversView: View {
                                 Text(contact.contactMethod)
                                     .font(.footnote)
                                     .foregroundColor(.gray)
+                                if let note = contact.identifierNote {
+                                    Text("Identifiable by: \(note)")
+                                        .font(.footnote)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                             .padding(.vertical, 4)
                         }
@@ -124,7 +134,9 @@ struct AddLifesaversView: View {
     }
 
     private var isInputValid: Bool {
-        !nameInput.isEmpty && phoneInput.filter(\.isNumber).count == 10
+        !nameInput.isEmpty &&
+        phoneInput.filter(\.isNumber).count == 10 &&
+        !identifierNote.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
     private func hideKeyboard() {

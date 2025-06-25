@@ -21,14 +21,9 @@ struct RiskEngine {
     ]
 
     static let feelingsWeights: [String: Int] = [
-        "overwhelmed": 15,
-        "anxious": 10,
-        "disconnected": 20,
-        "scared": 15,
-        "angry": 10,
-        "empty": 20,
-        "hopeless": 25,
-        "worthless": 25
+        "overwhelmed": 15, "anxious": 10, "disconnected": 20,
+        "scared": 15, "angry": 10, "empty": 20,
+        "hopeless": 25, "worthless": 25
     ]
 
     static func evaluate(
@@ -44,11 +39,15 @@ struct RiskEngine {
         feelsSafe: Bool,
         hasHarmThoughts: Bool,
         moodTrend: [Int] = [],
+        energyTrend: [Int] = [],
+        sleepTrend: [Int] = [],
+        appetiteTrend: [Int] = [],
+        anxietyTrend: [Int] = [],
+        interestTrend: [Int] = [],
         userProfile: UserProfile? = nil
     ) -> RiskScore {
         var score = 0
         var triggers: [String] = []
-
         let text = journalText.lowercased()
 
         // 1. Keyword Matching
@@ -72,48 +71,67 @@ struct RiskEngine {
             score += sentimentBoost
         }
 
-        // 4. Baseline Delta Scoring (mood, energy, sleep, appetite, anxiety)
+        // 4. Baseline Deviation Scoring
         if let profile = userProfile {
             if mood <= profile.baselineMood - 2 {
-                score += 10
-                triggers.append("mood ↓ vs baseline")
+                score += 10; triggers.append("mood ↓ vs baseline")
             }
             if energy <= profile.baselineEnergy - 2 {
-                score += 10
-                triggers.append("energy ↓ vs baseline")
+                score += 10; triggers.append("energy ↓ vs baseline")
             }
             if sleep <= profile.baselineSleep - 2 {
-                score += 10
-                triggers.append("sleep ↓ vs baseline")
+                score += 10; triggers.append("sleep ↓ vs baseline")
             }
             if appetite <= profile.baselineAppetite - 2 {
-                score += 10
-                triggers.append("appetite ↓ vs baseline")
+                score += 10; triggers.append("appetite ↓ vs baseline")
             }
             if anxiety >= profile.baselineAnxiety + 2 {
-                score += 10
-                triggers.append("anxiety ↑ vs baseline")
+                score += 10; triggers.append("anxiety ↑ vs baseline")
             }
         } else {
-            if mood <= 3 { score += 10 }
-            if energy <= 3 { score += 10 }
+            if mood <= 4 { score += 10 }
+            if energy <= 4 { score += 10 }
         }
 
-        // 5. Low scores across multiple areas
-        let lows = [mood, energy, sleep, appetite, anxiety].filter { $0 <= 2 }.count
+        // 5. Multi-Metric Low Count
+        let lows = [mood, energy, sleep, appetite, anxiety].filter { $0 <= 4 }.count
         if lows >= 4 {
             score += 20
             triggers.append("multiple low scores")
         }
 
-        // 6. Mood trend over 3 days
-        if moodTrend.suffix(3).allSatisfy({ $0 <= 3 }) {
-            score += 25
-            triggers.append("3-day mood drop")
+        // 6. Trend Evaluation (uses updated TrendAnalyzer)
+        var trendFlags = 0
+        if let profile = userProfile {
+            if TrendAnalyzer.isDownwardTrend(moodTrend, baseline: profile.baselineMood) {
+                score += 10; trendFlags += 1
+                triggers.append("mood trend ↓")
+            }
+            if TrendAnalyzer.isDownwardTrend(energyTrend, baseline: profile.baselineEnergy) {
+                score += 10; trendFlags += 1
+                triggers.append("energy trend ↓")
+            }
+            if TrendAnalyzer.isFlatBelowBaseline(interestTrend, baseline: profile.baselineInterest) {
+                score += 10; trendFlags += 1
+                triggers.append("stagnant interest")
+            }
+            if TrendAnalyzer.isConsistentlyLow(sleepTrend) {
+                score += 10; trendFlags += 1
+                triggers.append("sleep low x3")
+            }
+            if TrendAnalyzer.isConsistentlyLow(appetiteTrend) {
+                score += 10; trendFlags += 1
+                triggers.append("appetite low x3")
+            }
         }
 
-        // 7. Interest / Hopelessness sliders
-        if interest <= 3 {
+        if trendFlags >= 3 {
+            score += 10
+            triggers.append("multiple trend drops")
+        }
+
+        // 7. Interest / Hopelessness
+        if interest <= 4 {
             score += 10
             triggers.append("low interest")
         }
@@ -126,7 +144,7 @@ struct RiskEngine {
             triggers.append("moderate hopelessness")
         }
 
-        // 8. Safety Signals
+        // 8. Safety Signals (override all logic if danger present)
         if hasHarmThoughts {
             score = 100
             triggers.append("harm thoughts")
@@ -135,16 +153,14 @@ struct RiskEngine {
             triggers.append("unsafe today")
         }
 
-        // 9. No journal entry with other low scores
+        // 9. Silent Journal + Lows
         if journalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && lows >= 3 {
             score += 10
             triggers.append("low scores + no journal")
         }
 
-        // Final Score Clamp
+        // Final Clamp & Risk Level
         score = min(score, 100)
-
-        // Final Tiering
         let level: RiskLevel
         switch score {
         case 0..<31: level = .low
@@ -158,7 +174,6 @@ struct RiskEngine {
 
     private static func sentimentScore(from text: String) -> Int? {
         guard !text.isEmpty else { return nil }
-
         let tagger = NLTagger(tagSchemes: [.sentimentScore])
         tagger.string = text
 
@@ -167,7 +182,6 @@ struct RiskEngine {
             if score <= -0.4 { return 25 }
             else if score <= -0.2 { return 15 }
             else if score <= 0 { return 5 }
-            else { return 0 }
         }
         return nil
     }

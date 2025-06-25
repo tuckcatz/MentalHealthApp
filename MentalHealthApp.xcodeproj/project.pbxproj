@@ -49,6 +49,8 @@
 		8051E36E2DDC0CA500EA6A48 /* ResourcesAndLearningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E36D2DDC0CA500EA6A48 /* ResourcesAndLearningView.swift */; };
 		8051E3702DDC0CB900EA6A48 /* CrisisSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E36F2DDC0CB900EA6A48 /* CrisisSupportView.swift */; };
 		8051E3732DDC168000EA6A48 /* SharedUIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3722DDC168000EA6A48 /* SharedUIComponents.swift */; };
+		807895B52DFBC0D00078F2C9 /* TrendAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807895B42DFBC0D00078F2C9 /* TrendAnalyzer.swift */; };
+		807895B72DFBCA4C0078F2C9 /* MissedCheckInMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807895B62DFBCA4C0078F2C9 /* MissedCheckInMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,8 @@
 		8051E36D2DDC0CA500EA6A48 /* ResourcesAndLearningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesAndLearningView.swift; sourceTree = "<group>"; };
 		8051E36F2DDC0CB900EA6A48 /* CrisisSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrisisSupportView.swift; sourceTree = "<group>"; };
 		8051E3722DDC168000EA6A48 /* SharedUIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUIComponents.swift; sourceTree = "<group>"; };
+		807895B42DFBC0D00078F2C9 /* TrendAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendAnalyzer.swift; sourceTree = "<group>"; };
+		807895B62DFBCA4C0078F2C9 /* MissedCheckInMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedCheckInMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +229,8 @@
 				8051E3682DDC052800EA6A48 /* PDFExporter.swift */,
 				804BEC7C2DE7F54F00979E19 /* RiskEngine.swift */,
 				804BEC7E2DE7FB0700979E19 /* AlertManager.swift */,
+				807895B42DFBC0D00078F2C9 /* TrendAnalyzer.swift */,
+				807895B62DFBCA4C0078F2C9 /* MissedCheckInMonitor.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -458,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				807895B52DFBC0D00078F2C9 /* TrendAnalyzer.swift in Sources */,
 				8051E33F2DDB761900EA6A48 /* ConfirmationView.swift in Sources */,
 				8051E3642DDBF52400EA6A48 /* TrendAnalysisView.swift in Sources */,
 				8051E35B2DDBA04100EA6A48 /* WelcomeIntroView.swift in Sources */,
@@ -478,6 +485,7 @@
 				8051E3602DDBADDA00EA6A48 /* DashboardView.swift in Sources */,
 				8051E3512DDB8EE300EA6A48 /* CrisisResourcesView.swift in Sources */,
 				804BEC7D2DE7F54F00979E19 /* RiskEngine.swift in Sources */,
+				807895B72DFBCA4C0078F2C9 /* MissedCheckInMonitor.swift in Sources */,
 				80209E892DDE3F2C00E01946 /* TutorialSliderView.swift in Sources */,
 				8051E3292DDB750C00EA6A48 /* UserProfile.swift in Sources */,
 				8051E34F2DDB8E8200EA6A48 /* CopingSupportView.swift in Sources */,
@@ -658,7 +666,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = XAD3237276;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -690,7 +698,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = XAD3237276;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

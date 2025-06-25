@@ -46,7 +46,7 @@ class CheckInStore: ObservableObject {
             journalImageData: journalImage
         )
         checkIns.append(newCheckIn)
-        dismissedAbsencePromptAt5Days = false // Reset 5-day alert state on new check-in
+        dismissedAbsencePromptAt5Days = false // Reset alert flag on check-in
     }
 
     func getLastCheckIns(limit: Int = 5) -> [CheckIn] {
@@ -62,7 +62,6 @@ class CheckInStore: ObservableObject {
         return checkIns.suffix(3).map { $0.moodRating }
     }
 
-    /// Count how many days in the last `days` are missing check-ins
     func missedCheckInDays(inLast days: Int = 5) -> Int {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
@@ -80,6 +79,32 @@ class CheckInStore: ObservableObject {
         }
 
         return missed
+    }
+
+    // MARK: - Trend Data for RiskEngine
+
+    func getMoodTrend(days: Int = 5) -> [Int] {
+        checkIns.suffix(days).map { $0.moodRating }
+    }
+
+    func getEnergyTrend(days: Int = 5) -> [Int] {
+        checkIns.suffix(days).map { $0.energyLevel }
+    }
+
+    func getSleepTrend(days: Int = 5) -> [Int] {
+        checkIns.suffix(days).map { $0.sleepQuality }
+    }
+
+    func getAppetiteTrend(days: Int = 5) -> [Int] {
+        checkIns.suffix(days).map { $0.appetiteLevel }
+    }
+
+    func getAnxietyTrend(days: Int = 5) -> [Int] {
+        checkIns.suffix(days).map { $0.anxietyLevel }
+    }
+
+    func getInterestTrend(days: Int = 5) -> [Int] {
+        checkIns.suffix(days).map { $0.interestLevel }
     }
 
     private func saveCheckIns() {

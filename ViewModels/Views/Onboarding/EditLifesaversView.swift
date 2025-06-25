@@ -6,7 +6,7 @@ struct EditLifesaversView: View {
 
     @State private var nameInput: String = ""
     @State private var phoneInput: String = ""
-    @State private var emailInput: String = ""
+    @State private var identifierNote: String = ""
     @State private var editingContactID: UUID?
     @State private var showLastContactAlert = false
 
@@ -27,15 +27,17 @@ struct EditLifesaversView: View {
 
                 // Input Form
                 VStack(spacing: 12) {
-                    TextField("Name (required)", text: $nameInput)
+                    TextField("Name", text: $nameInput)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                    TextField("Phone Number (required)", text: $phoneInput)
+                    TextField("Phone Number", text: $phoneInput)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.phonePad)
 
-                    TextField("Email (optional)", text: $emailInput)
+                    TextField("How will they recognize you?", text: $identifierNote)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
 
                     Button(action: handleSave) {
                         Text(editingContactID == nil ? "Add Contact" : "Update Contact")
@@ -75,6 +77,11 @@ struct EditLifesaversView: View {
                             Text(contact.contactMethod)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
+                            if let note = contact.identifierNote {
+                                Text("Identifiable by: \(note)")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                         .padding()
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -117,20 +124,27 @@ struct EditLifesaversView: View {
 
     // MARK: - Validation
     private var isInputValid: Bool {
-        !nameInput.isEmpty && phoneInput.filter(\.isNumber).count == 10
+        !nameInput.isEmpty &&
+        phoneInput.filter(\.isNumber).count == 10 &&
+        !identifierNote.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
     // MARK: - Actions
     private func handleSave() {
         guard isInputValid else { return }
 
-        let method = "Phone: \(phoneInput)" + (emailInput.isEmpty ? "" : " | Email: \(emailInput)")
+        let contact = TrustedContact(
+            id: editingContactID ?? UUID(),
+            name: nameInput,
+            contactMethod: "Phone: \(phoneInput)",
+            identifierNote: identifierNote
+        )
 
         if let editingID = editingContactID,
            let index = lifesaverStore.contacts.firstIndex(where: { $0.id == editingID }) {
-            lifesaverStore.contacts[index] = TrustedContact(id: editingID, name: nameInput, contactMethod: method)
+            lifesaverStore.contacts[index] = contact
         } else {
-            lifesaverStore.add(TrustedContact(name: nameInput, contactMethod: method))
+            lifesaverStore.add(contact)
         }
 
         clearForm()
@@ -148,18 +162,15 @@ struct EditLifesaversView: View {
     private func loadContactForEditing(_ contact: TrustedContact) {
         nameInput = contact.name
         phoneInput = contact.contactMethod
-            .components(separatedBy: " | ")
-            .first?
-            .replacingOccurrences(of: "Phone: ", with: "") ?? ""
-        emailInput = contact.contactMethod.contains("Email:") ?
-            contact.contactMethod.components(separatedBy: "Email: ").last ?? "" : ""
+            .replacingOccurrences(of: "Phone: ", with: "")
+        identifierNote = contact.identifierNote ?? ""
         editingContactID = contact.id
     }
 
     private func clearForm() {
         nameInput = ""
         phoneInput = ""
-        emailInput = ""
+        identifierNote = ""
         editingContactID = nil
     }
 

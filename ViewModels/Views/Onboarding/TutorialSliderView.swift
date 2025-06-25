@@ -5,15 +5,15 @@ struct TutorialSliderView: View {
     @State private var navigateToNext = false
 
     let slides: [TutorialSlide] = [
-        TutorialSlide(title: "Asking for help is the hardest part.", body: "This app is designed to do many things, but at its core, it's built to help you ask for help. Here's how..."),
-        TutorialSlide(title: "Your anonymous ID.", body: "You'll receive a unique ID to anonymize your data and protect your privacy. We'll use it to track your check-ins, baseline info, and trends."),
-        TutorialSlide(title: "Add your LifeSavers.", body: "These are trusted contacts. You can share their phone or email. If we detect high risk, we'll notify them to check in with you."),
-        TutorialSlide(title: "Baseline check-in comes first.", body: "Your starting point. All future check-ins and data compare to it. Reset anytime in Settings."),
-        TutorialSlide(title: "Daily check-ins matter.", body: "You'll do a quick check-in each day. You can customize reminder times in Settings."),
-        TutorialSlide(title: "We detect risk and act.", body: "If we detect concern in your data, we'll provide support resources and alert your LifeSavers if needed."),
-        TutorialSlide(title: "Explore your resources.", body: "Find articles, mindfulness tools, and view your mood trends over time."),
-        TutorialSlide(title: "Export for therapy or reflection.", body: "If you're working with a therapist, you can export your anonymized data from Settings."),
-        TutorialSlide(title: "Ready to go?", body: "Let's get started by creating your ID, adding your LifeSavers and setting your baseline.")
+        TutorialSlide(title: "Asking for help is the hardest part.", body: "CheckIn exists to make that easier. It watches for concerning patterns and alerts people you trust — so you're never truly alone, even when it feels like it. Here's how..."),
+        TutorialSlide(title: "Your anonymous ID.", body: "You’ll receive a unique ID instead of a username. We don’t ask for your name or personal info — just your check-in data, trends, and how you’re doing."),
+        TutorialSlide(title: "Add your LifeSavers.", body: "LifeSavers are people you trust. If you're in distress — or stop checking in for a while — we’ll send them a message encouraging them to check in on you."),
+        TutorialSlide(title: "Your baseline matters.", body: "Before starting, you'll set a baseline: a snapshot of how you *typically* feel. We compare future check-ins to this to spot changes. You can reset it anytime."),
+        TutorialSlide(title: "Check in daily — even briefly.", body: "A few quick taps each day help track how you’re doing over time. You’ll set a daily reminder to make it easy to stay consistent."),
+        TutorialSlide(title: "We detect risk and act.", body: "If we see signs of distress, we’ll gently offer support resources. If it’s serious, we’ll automatically notify your LifeSavers to help you feel less alone."),
+        TutorialSlide(title: "Explore helpful tools.", body: "You’ll find calming resources, mental health content, and trend charts to understand your mood, sleep, energy, and more — all in one place."),
+        TutorialSlide(title: "Export your data anytime.", body: "If you're working with a therapist or doctor, you can securely export your anonymized check-in data from Settings to support your care."),
+        TutorialSlide(title: "Let’s get started.", body: "We’ll walk you through creating your ID, adding your LifeSavers, and setting your baseline. You’re in control every step of the way.")
     ]
 
     var body: some View {

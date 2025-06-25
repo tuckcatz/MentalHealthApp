@@ -42,6 +42,16 @@ class UserProfileStore: ObservableObject {
         )
     }
 
+    // MARK: - Accessors for RiskEngine (optional fallbacks)
+
+    var baselineMood: Int { profile?.baselineMood ?? 5 }
+    var baselineEnergy: Int { profile?.baselineEnergy ?? 5 }
+    var baselineSleep: Int { profile?.baselineSleep ?? 5 }
+    var baselineAnxiety: Int { profile?.baselineAnxiety ?? 5 }
+    var baselineAppetite: Int { profile?.baselineAppetite ?? 5 }
+    var baselineInterest: Int { profile?.baselineInterest ?? 5 }
+    var baselineHopelessness: Int { profile?.baselineHopelessness ?? 5 }
+
     func saveProfile() {
         guard let profile = profile else { return }
         do {

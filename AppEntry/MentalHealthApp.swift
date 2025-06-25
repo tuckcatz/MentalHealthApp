@@ -20,6 +20,14 @@ struct MentalHealthApp: App {
                 .environmentObject(userProfileStore)
                 .environmentObject(lifesaverStore)
                 .environmentObject(alertManager)
+                .onAppear {
+                    let monitor = MissedCheckInMonitor(
+                        checkInStore: checkInStore,
+                        alertManager: alertManager,
+                        userProfile: userProfileStore.profile
+                    )
+                    monitor.evaluateMissedCheckIns()
+                }
         }
     }
 }
