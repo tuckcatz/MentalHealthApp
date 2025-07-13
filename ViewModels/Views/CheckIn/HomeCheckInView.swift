@@ -2,6 +2,9 @@ import SwiftUI
 import PhotosUI
 
 struct HomeCheckInView: View {
+    @AppStorage("checkInDeferredUntil") var checkInDeferredUntil: Date = .distantPast
+    @AppStorage("shouldShowCheckIn") var shouldShowCheckIn: Bool = true
+
     @State private var moodRating: Double = 5
     @State private var energyLevel: Double = 5
     @State private var sleepQuality: Double = 5
@@ -15,28 +18,29 @@ struct HomeCheckInView: View {
     @EnvironmentObject var userProfileStore: UserProfileStore
     @EnvironmentObject var checkInStore: CheckInStore
     @EnvironmentObject var alertManager: AlertManager
+    @Environment(\.dismiss) var dismiss
 
     @State private var journalText: String = ""
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var journalImage: Image? = nil
     @State private var journalImageData: Data?
 
-    @State private var selectedFeelings: [String] = []
-
-    var balancedDailyFeelings: [FeelingWord] {
-        let seed = Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 0
-        var generator = SeededRandomNumberGenerator(seed: UInt64(seed))
-
-        let pos = FeelingWord.positive.shuffled(using: &generator).prefix(2)
-        let risk = FeelingWord.highRisk.shuffled(using: &generator).prefix(2)
-        let mild = (FeelingWord.mildNegative + FeelingWord.neutral).shuffled(using: &generator).prefix(2)
-
-        return Array((pos + risk + mild).shuffled(using: &generator))
-    }
+    @State private var selectedFeelings: [FeelingWord] = []
+    @StateObject private var feelingWordsStore = FeelingWordsStore()
 
     @State private var navigateToConfirmation = false
     @State private var navigateToCoping = false
     @State private var navigateToAlert = false
+
+    var balancedDailyFeelings: [FeelingWord] {
+        let shuffled = feelingWordsStore.allWords.shuffled()
+
+        let pos = shuffled.filter { $0.category == .positive }.prefix(2)
+        let risk = shuffled.filter { $0.category == .highRisk }.prefix(2)
+        let mild = shuffled.filter { $0.category == .mildNegative || $0.category == .neutral }.prefix(2)
+
+        return Array((pos + risk + mild).shuffled())
+    }
 
     var body: some View {
         NavigationStack {
@@ -71,18 +75,18 @@ struct HomeCheckInView: View {
                                 Text(feeling.word)
                                     .padding(.vertical, 8)
                                     .frame(maxWidth: .infinity)
-                                    .background(selectedFeelings.contains(feeling.word) ? Color("BrandBlue") : backgroundColor(for: feeling.category))
-                                    .foregroundColor(selectedFeelings.contains(feeling.word) ? .white : .primary)
+                                    .background(selectedFeelings.contains(where: { $0.word == feeling.word }) ? Color("BrandBlue") : backgroundColor(for: feeling.category))
+                                    .foregroundColor(selectedFeelings.contains(where: { $0.word == feeling.word }) ? .white : .primary)
                                     .cornerRadius(8)
                                     .onTapGesture {
-                                        toggleFeeling(feeling.word)
+                                        toggleFeeling(feeling)
                                     }
                             }
                         }
                     }
 
                     Card {
-                        SectionHeader(title: "📓 Journal (Optional)")
+                        SectionHeader(title: "📓 Journal (recommended)")
                         TextEditor(text: $journalText)
                             .frame(height: 140)
                             .padding(6)
@@ -111,20 +115,38 @@ struct HomeCheckInView: View {
                     }
 
                     Card {
-                        Button(action: handleSubmit) {
-                            Text("Submit Check-In")
-                                .font(.headline)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 14)
-                                .background(Color("BrandBlue"))
-                                .foregroundColor(.white)
-                                .cornerRadius(12)
-                                .shadow(radius: 2)
-                        }
+                        VStack(spacing: 12) {
+                            Button(action: handleSubmit) {
+                                Text("Submit Check-In")
+                                    .font(.headline)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 14)
+                                    .background(Color("BrandBlue"))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(12)
+                                    .shadow(radius: 2)
+                            }
 
-                        NavigationLink(destination: ConfirmationView(), isActive: $navigateToConfirmation) { EmptyView() }
-                        NavigationLink(destination: CopingSupportView(), isActive: $navigateToCoping) { EmptyView() }
-                        NavigationLink(destination: HighRiskSupportView(), isActive: $navigateToAlert) { EmptyView() }
+                            // ✅ Dynamic "Remind Me Later" or "Dismiss"
+                            Button(action: {
+                                if !checkInStore.hasCheckedInToday {
+                                    checkInDeferredUntil = Calendar.current.date(byAdding: .hour, value: 2, to: Date()) ?? Date().addingTimeInterval(7200)
+                                    shouldShowCheckIn = false
+                                    dismiss() // ✅ ADD THIS LINE
+                                } else {
+                                    dismiss()
+                                }
+                            }) {
+                                Text(checkInStore.hasCheckedInToday ? "Dismiss" : "Remind Me Later")
+                                    .font(.subheadline)
+                                    .foregroundColor(Color("BrandBlue"))
+                                    .padding(.vertical, 8)
+                            }
+
+                            NavigationLink(destination: ConfirmationView(), isActive: $navigateToConfirmation) { EmptyView() }
+                            NavigationLink(destination: CopingSupportView(), isActive: $navigateToCoping) { EmptyView() }
+                            NavigationLink(destination: HighRiskSupportView(), isActive: $navigateToAlert) { EmptyView() }
+                        }
                     }
 
                     Spacer(minLength: 30)
@@ -141,7 +163,7 @@ struct HomeCheckInView: View {
 
         let riskResult = RiskEngine.evaluate(
             journalText: journalText,
-            feelings: selectedFeelings,
+            feelings: selectedFeelings.map { $0.word },
             mood: Int(moodRating),
             energy: Int(energyLevel),
             sleep: Int(sleepQuality),
@@ -170,6 +192,10 @@ struct HomeCheckInView: View {
             journalImage: journalImageData
         )
 
+        // ✅ Reset suppression after check-in
+        shouldShowCheckIn = true
+        checkInDeferredUntil = .distantPast
+
         switch riskResult.level {
         case .critical:
             alertManager.sendAlerts(for: riskResult)
@@ -193,99 +219,26 @@ struct HomeCheckInView: View {
         }
     }
 
-    func toggleFeeling(_ word: String) {
-        if selectedFeelings.contains(word) {
-            selectedFeelings.removeAll { $0 == word }
+    func toggleFeeling(_ feeling: FeelingWord) {
+        if let index = selectedFeelings.firstIndex(where: { $0.word == feeling.word }) {
+            selectedFeelings.remove(at: index)
         } else {
-            selectedFeelings.append(word)
+            selectedFeelings.append(feeling)
         }
     }
 
     func backgroundColor(for category: FeelingCategory) -> Color {
         switch category {
-        case .positive: return Color.green.opacity(0.2)
-        case .mildNegative: return Color.orange.opacity(0.2)
-        case .highRisk: return Color.red.opacity(0.2)
-        case .neutral: return Color.gray.opacity(0.2)
+        case .positive:
+            return Color.green.opacity(0.2)
+        case .mildNegative:
+            return Color.orange.opacity(0.2)
+        case .highRisk:
+            return Color.red.opacity(0.2)
+        case .neutral:
+            return Color.gray.opacity(0.2)
+        @unknown default:
+            return Color.black.opacity(0.2)
         }
-    }
-}
-
-// MARK: - Feeling Tags
-
-struct FeelingWord: Hashable {
-    let word: String
-    let category: FeelingCategory
-
-    static let positive: [FeelingWord] = [
-        .init(word: "Calm", category: .positive),
-        .init(word: "Hopeful", category: .positive),
-        .init(word: "Grateful", category: .positive),
-        .init(word: "Connected", category: .positive),
-        .init(word: "Relieved", category: .positive),
-        .init(word: "Motivated", category: .positive)
-    ]
-
-    static let mildNegative: [FeelingWord] = [
-        .init(word: "Worried", category: .mildNegative),
-        .init(word: "Tired", category: .mildNegative),
-        .init(word: "Irritable", category: .mildNegative),
-        .init(word: "Distracted", category: .mildNegative),
-        .init(word: "Overthinking", category: .mildNegative),
-        .init(word: "Frustrated", category: .mildNegative)
-    ]
-
-    static let neutral: [FeelingWord] = [
-        .init(word: "Meh", category: .neutral),
-        .init(word: "Flat", category: .neutral),
-        .init(word: "Unsure", category: .neutral),
-        .init(word: "Blank", category: .neutral)
-    ]
-
-    static let highRisk: [FeelingWord] = [
-        .init(word: "Empty", category: .highRisk),
-        .init(word: "Hopeless", category: .highRisk),
-        .init(word: "Numb", category: .highRisk),
-        .init(word: "Disconnected", category: .highRisk),
-        .init(word: "Overwhelmed", category: .highRisk),
-        .init(word: "Isolated", category: .highRisk),
-        .init(word: "Worthless", category: .highRisk),
-        .init(word: "Suicidal", category: .highRisk)
-    ]
-}
-
-enum FeelingCategory {
-    case positive, mildNegative, highRisk, neutral
-}
-
-struct SliderBlock: View {
-    var title: String
-    @Binding var value: Double
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("\(title): \(Int(value))")
-                .font(.headline)
-            Slider(value: $value, in: 1...10, step: 1)
-                .tint(Color("BrandBlue"))
-        }
-    }
-}
-
-struct SeededRandomNumberGenerator: RandomNumberGenerator {
-    private var state: UInt64
-    init(seed: UInt64) { self.state = seed }
-
-    mutating func next() -> UInt64 {
-        state = 2862933555777941757 &* state &+ 3037000493
-        return state
-    }
-}
-
-extension Array {
-    func shuffled(using generator: inout some RandomNumberGenerator) -> [Element] {
-        var copy = self
-        copy.shuffle(using: &generator)
-        return copy
     }
 }

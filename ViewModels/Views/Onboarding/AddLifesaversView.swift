@@ -47,6 +47,9 @@ struct AddLifesaversView: View {
                     TextField("Phone Number", text: $phoneInput)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.phonePad)
+                        .onChange(of: phoneInput) { newValue in
+                            phoneInput = formatPhoneNumber(newValue)
+                        }
 
                     TextField("How will they recognize you?", text: $identifierNote)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -134,12 +137,22 @@ struct AddLifesaversView: View {
     }
 
     private var isInputValid: Bool {
-        !nameInput.isEmpty &&
         phoneInput.filter(\.isNumber).count == 10 &&
+        !nameInput.isEmpty &&
         !identifierNote.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
     private func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+
+    private func formatPhoneNumber(_ number: String) -> String {
+        let digits = number.filter { $0.isNumber }
+        var result = ""
+        for (index, digit) in digits.enumerated() {
+            if index == 3 || index == 6 { result.append("-") }
+            result.append(digit)
+        }
+        return String(result.prefix(12))
     }
 }

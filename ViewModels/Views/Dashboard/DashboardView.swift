@@ -16,11 +16,6 @@ struct DashboardView: View {
 
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
-    var hasCheckedInToday: Bool {
-        guard let latest = checkInStore.checkIns.last else { return false }
-        return Calendar.current.isDateInToday(latest.date)
-    }
-
     var recentMoodData: [CheckIn] {
         checkInStore.checkIns.suffix(7)
     }
@@ -48,10 +43,11 @@ struct DashboardView: View {
                         DashboardCardLink(title: "Resources & Tools", icon: "books.vertical", destination: ResourcesAndLearningView())
                         DashboardCardLink(title: "Wellness Insights", icon: "waveform.path.ecg", destination: TrendAnalysisView())
                         DashboardCardLink(title: "Mood Calendar", icon: "calendar", destination: MoodCalendarView())
-                        DashboardCardLink(title: "Get Help Now", icon: "exclamationmark.triangle", destination: CrisisSupportView())
                         DashboardCardLink(title: "LifeSavers", icon: "person.3.fill", destination: EditLifesaversView())
                         DashboardCardLink(title: "Settings", icon: "gearshape", destination: SettingsView())
+                        DashboardCardLink(title: "Get Help Now", icon: "exclamationmark.triangle", destination: CrisisSupportView(), iconColor: .red)
                     }
+                    
                     .padding(.horizontal)
 
                     Spacer(minLength: 30)
@@ -75,7 +71,7 @@ struct DashboardView: View {
 
                     missedDays = checkInStore.missedCheckInDays()
 
-                    if hasCheckedInToday {
+                    if checkInStore.hasCheckedInToday {
                         showAbsencePrompt = false
                         return
                     }
@@ -225,14 +221,15 @@ struct DashboardView: View {
         .padding(.horizontal)
     }
 
+    // ✅ FIXED SECTION BELOW
     var checkInCard: some View {
         Card {
             VStack(alignment: .leading, spacing: 12) {
-                Text(hasCheckedInToday ? "✅ You’ve checked in today." : "🕒 Haven’t checked in yet.")
+                Text(checkInStore.hasCheckedInToday ? "✅ You’ve checked in today." : "🕒 Haven’t checked in yet.")
                     .font(.headline)
 
                 NavigationLink(destination: HomeCheckInView()) {
-                    Text(hasCheckedInToday ? "Check In Again" : "Check In Now")
+                    Text(checkInStore.hasCheckedInToday ? "Check In Again" : "Check In Now")
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color("BrandBlue"))
@@ -301,19 +298,21 @@ struct DashboardView: View {
         return insights.randomElement() ?? "Keep checking in — we’ll surface helpful patterns over time."
     }
 }
+
 // MARK: - Dashboard Card Link Component
 
 struct DashboardCardLink<Destination: View>: View {
     let title: String
     let icon: String
     let destination: Destination
+    var iconColor: Color = Color("BrandBlue") // <-- Add this line
 
     var body: some View {
         NavigationLink(destination: destination) {
             VStack(spacing: 8) {
                 Image(systemName: icon)
                     .font(.title2)
-                    .foregroundColor(Color("BrandBlue"))
+                    .foregroundColor(iconColor) // <-- Use this here
 
                 Text(title)
                     .font(.subheadline)

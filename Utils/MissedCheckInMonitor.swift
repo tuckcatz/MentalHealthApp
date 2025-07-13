@@ -55,7 +55,7 @@ class MissedCheckInMonitor {
         for checkIn in recent {
             let risk = RiskEngine.evaluate(
                 journalText: checkIn.journalText ?? "",
-                feelings: checkIn.feelings,
+                feelings: checkIn.feelings.map { $0.word }, // ✅ Use .word instead of .text
                 mood: checkIn.moodRating,
                 energy: checkIn.energyLevel,
                 sleep: checkIn.sleepQuality,
@@ -68,7 +68,7 @@ class MissedCheckInMonitor {
                 moodTrend: checkInStore.recentMoodTrend,
                 userProfile: userProfile
             )
-            if risk.level == .high || risk.level == .critical {
+            if [.high, .critical].contains(risk.level) { // ✅ Fixed contextual enum reference
                 return true
             }
         }

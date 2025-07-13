@@ -32,11 +32,11 @@ struct TrendAnalysisView: View {
     var appetitePrev: Int { previous7.map { $0.appetiteLevel }.average }
 
     var mostCommonWords: [String] {
-        let all = dataset.flatMap { $0.feelings }
-        let counts = Dictionary(grouping: all, by: { $0 }).mapValues { $0.count }
+        let all = dataset.flatMap { $0.feelings }  // [FeelingWord]
+        let counts = Dictionary(grouping: all, by: { $0.word }).mapValues { $0.count }
         return counts.sorted { $0.value > $1.value }.prefix(2).map { $0.key }
     }
-
+    
     var journalBoostInsight: String? {
         let journalDays = dataset.filter { !($0.journalText?.isEmpty ?? true) }
         let nonJournalDays = dataset.filter { ($0.journalText?.isEmpty ?? true) }
@@ -52,9 +52,11 @@ struct TrendAnalysisView: View {
     }
 
     var highRiskAlert: String? {
-        let highRiskWords = ["Depressed", "Hopeless", "Numb", "Empty", "Desperate", "Suicidal", "Overwhelmed", "Trapped", "Worthless"]
+        let store = FeelingWordsStore()
+        let highRiskSet = Set(store.allWords.filter { $0.category == .highRisk }.map { $0.word })
+
         let count = dataset.filter {
-            $0.feelings.contains(where: { highRiskWords.contains($0) })
+            $0.feelings.contains(where: { highRiskSet.contains($0.word) })
         }.count
 
         return count >= 3 ? "You've selected high-risk words on \(count) of your recent check-ins." : nil
@@ -117,7 +119,6 @@ struct TrendAnalysisView: View {
                         }
                     }
 
-                    // PDF Export
                     VStack(alignment: .leading, spacing: 12) {
                         Text("📤 Export Your Mood Report")
                             .font(.headline)

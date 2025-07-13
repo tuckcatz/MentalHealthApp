@@ -9,6 +9,7 @@ class CheckInStore: ObservableObject {
     }
 
     @AppStorage("dismissedAbsencePromptAt5Days") var dismissedAbsencePromptAt5Days: Bool = false
+    @AppStorage("checkInDeferredUntil") var checkInDeferredUntil: Date = .distantPast
 
     private let checkInKey = "userCheckIns"
 
@@ -26,7 +27,7 @@ class CheckInStore: ObservableObject {
         hopelessness: Int,
         feelsSafe: Bool,
         hasHarmThoughts: Bool,
-        feelings: [String] = [],
+        feelings: [FeelingWord] = [],
         journal: String,
         journalImage: Data?
     ) {
@@ -46,7 +47,8 @@ class CheckInStore: ObservableObject {
             journalImageData: journalImage
         )
         checkIns.append(newCheckIn)
-        dismissedAbsencePromptAt5Days = false // Reset alert flag on check-in
+        dismissedAbsencePromptAt5Days = false
+        checkInDeferredUntil = .distantPast // ✅ Reset deferral on successful check-in
     }
 
     func getLastCheckIns(limit: Int = 5) -> [CheckIn] {
@@ -54,10 +56,13 @@ class CheckInStore: ObservableObject {
     }
 
     var hasCheckedInToday: Bool {
-        guard let latest = checkIns.last else { return false }
-        return Calendar.current.isDateInToday(latest.date)
+        let calendar = Calendar.current
+        return checkIns.contains {
+            calendar.isDateInToday($0.date) &&
+            ($0.moodRating != 0 || !($0.journalText ?? "").isEmpty)
+        }
     }
-
+    
     var recentMoodTrend: [Int] {
         return checkIns.suffix(3).map { $0.moodRating }
     }
@@ -130,5 +135,25 @@ class CheckInStore: ObservableObject {
         checkIns = []
         UserDefaults.standard.removeObject(forKey: checkInKey)
         dismissedAbsencePromptAt5Days = false
+        checkInDeferredUntil = .distantPast
+    }
+
+    // MARK: - Daily Refresh Logic
+
+    func refreshCheckInStatus() {
+        let calendar = Calendar.current
+        let today = Date()
+
+        // Reset hasCheckedInToday if needed
+        if let lastCheckInDate = checkIns.last?.date {
+            if !calendar.isDateInToday(lastCheckInDate) {
+                objectWillChange.send()
+            }
+        }
+
+        // Reset checkInDeferredUntil if a new day has started
+        if !calendar.isDateInToday(checkInDeferredUntil) {
+            checkInDeferredUntil = .distantPast
+        }
     }
 }

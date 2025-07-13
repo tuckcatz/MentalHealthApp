@@ -21,9 +21,20 @@ struct RiskEngine {
     ]
 
     static let feelingsWeights: [String: Int] = [
-        "overwhelmed": 15, "anxious": 10, "disconnected": 20,
-        "scared": 15, "angry": 10, "empty": 20,
-        "hopeless": 25, "worthless": 25
+        "overwhelmed": 15,
+        "anxious": 10,
+        "disconnected": 20,
+        "scared": 15,
+        "angry": 10,
+        "empty": 20,
+        "hopeless": 25,
+        "worthless": 25,
+        "numb": 20,
+        "trapped": 20,
+        "helpless": 20,
+        "tired of everything": 25,
+        "can't take it": 25,
+        "done with this": 30
     ]
 
     static func evaluate(

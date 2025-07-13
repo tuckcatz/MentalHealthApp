@@ -12,7 +12,7 @@ struct CheckIn: Identifiable, Codable {
     var hopelessnessLevel: Int
     var feelsSafe: Bool
     var hasHarmThoughts: Bool
-    var feelings: [String]
+    var feelings: [FeelingWord]        // 🔄 Updated from [String] to [FeelingWord]
     var journalText: String?
     var journalImageData: Data?
 }

@@ -53,8 +53,8 @@ struct PDFExporter {
                 .prefix(3)
                 .map { $0.key }
 
-            drawText("• Frequent Feelings: \(topWords.joined(separator: ", "))")
-
+            drawText("• Frequent Feelings: \(topWords.map { $0.word }.joined(separator: ", "))")
+            
             let journalDays = checkIns.filter { !($0.journalText?.isEmpty ?? true) }
             let nonJournalDays = checkIns.filter { ($0.journalText?.isEmpty ?? true) }
             if !journalDays.isEmpty && !nonJournalDays.isEmpty {

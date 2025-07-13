@@ -4,6 +4,8 @@ struct WelcomeLogoView: View {
     @AppStorage("userID") var userID: String = ""
     @AppStorage("hasAddedLifesavers") var hasAddedLifesavers: Bool = false
     @AppStorage("hasCompletedBaseline") var hasCompletedBaseline: Bool = false
+    @AppStorage("checkInDeferredUntil") var checkInDeferredUntil: Date = .distantPast
+    @AppStorage("shouldShowCheckIn") var shouldShowCheckIn: Bool = true
 
     @EnvironmentObject var checkInStore: CheckInStore
 
@@ -33,6 +35,7 @@ struct WelcomeLogoView: View {
             }
             .onAppear {
                 animateLogo = true
+                checkInStore.refreshCheckInStatus()
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                     navigate = true
@@ -46,15 +49,10 @@ struct WelcomeLogoView: View {
             return AnyView(WelcomeIntroView())
         } else if !hasCompletedBaseline {
             return AnyView(OnboardingResumeView())
-        } else if !checkInStore.hasCheckedInToday {
+        } else if !checkInStore.hasCheckedInToday && Date() > checkInDeferredUntil && shouldShowCheckIn {
             return AnyView(HomeCheckInView())
         } else {
             return AnyView(DashboardView())
         }
     }
-}
-
-#Preview {
-    WelcomeLogoView()
-        .environmentObject(CheckInStore())
 }

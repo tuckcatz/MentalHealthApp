@@ -51,6 +51,11 @@
 		8051E3732DDC168000EA6A48 /* SharedUIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051E3722DDC168000EA6A48 /* SharedUIComponents.swift */; };
 		807895B52DFBC0D00078F2C9 /* TrendAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807895B42DFBC0D00078F2C9 /* TrendAnalyzer.swift */; };
 		807895B72DFBCA4C0078F2C9 /* MissedCheckInMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807895B62DFBCA4C0078F2C9 /* MissedCheckInMonitor.swift */; };
+		807D183B2E22EC9600855110 /* FeelingWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807D183A2E22EC9600855110 /* FeelingWord.swift */; };
+		807D183D2E22ED6700855110 /* FeelingWordsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807D183C2E22ED6700855110 /* FeelingWordsStore.swift */; };
+		807D183F2E22F07600855110 /* FeelingCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807D183E2E22F07600855110 /* FeelingCategory.swift */; };
+		807D18412E23005F00855110 /* SliderBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807D18402E23005F00855110 /* SliderBlock.swift */; };
+		807D18432E23677000855110 /* AbsenceBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807D18422E23677000855110 /* AbsenceBannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +123,11 @@
 		8051E3722DDC168000EA6A48 /* SharedUIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUIComponents.swift; sourceTree = "<group>"; };
 		807895B42DFBC0D00078F2C9 /* TrendAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendAnalyzer.swift; sourceTree = "<group>"; };
 		807895B62DFBCA4C0078F2C9 /* MissedCheckInMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedCheckInMonitor.swift; sourceTree = "<group>"; };
+		807D183A2E22EC9600855110 /* FeelingWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingWord.swift; sourceTree = "<group>"; };
+		807D183C2E22ED6700855110 /* FeelingWordsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingWordsStore.swift; sourceTree = "<group>"; };
+		807D183E2E22F07600855110 /* FeelingCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingCategory.swift; sourceTree = "<group>"; };
+		807D18402E23005F00855110 /* SliderBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderBlock.swift; sourceTree = "<group>"; };
+		807D18422E23677000855110 /* AbsenceBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceBannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +200,9 @@
 				8051E3282DDB750C00EA6A48 /* UserProfile.swift */,
 				8051E32A2DDB753F00EA6A48 /* TrustedContact.swift */,
 				8051E32C2DDB755300EA6A48 /* CheckIn.swift */,
+				807D183A2E22EC9600855110 /* FeelingWord.swift */,
+				807D183C2E22ED6700855110 /* FeelingWordsStore.swift */,
+				807D183E2E22F07600855110 /* FeelingCategory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,6 +244,7 @@
 				804BEC7E2DE7FB0700979E19 /* AlertManager.swift */,
 				807895B42DFBC0D00078F2C9 /* TrendAnalyzer.swift */,
 				807895B62DFBCA4C0078F2C9 /* MissedCheckInMonitor.swift */,
+				807D18402E23005F00855110 /* SliderBlock.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -314,6 +328,7 @@
 			children = (
 				8051E36D2DDC0CA500EA6A48 /* ResourcesAndLearningView.swift */,
 				8051E36F2DDC0CB900EA6A48 /* CrisisSupportView.swift */,
+				807D18422E23677000855110 /* AbsenceBannerView.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -479,19 +494,24 @@
 				80209E792DDD5A0C00E01946 /* WelcomeIdentityView.swift in Sources */,
 				8051E34B2DDB774600EA6A48 /* MentalHealthApp.swift in Sources */,
 				80209E8B2DDE469300E01946 /* CheckInCompleteView.swift in Sources */,
+				807D18432E23677000855110 /* AbsenceBannerView.swift in Sources */,
 				8051E3552DDB950F00EA6A48 /* HighRiskSupportView.swift in Sources */,
 				8051E32D2DDB755300EA6A48 /* CheckIn.swift in Sources */,
 				8051E3352DDB75AB00EA6A48 /* AddLifesaversView.swift in Sources */,
 				8051E3602DDBADDA00EA6A48 /* DashboardView.swift in Sources */,
 				8051E3512DDB8EE300EA6A48 /* CrisisResourcesView.swift in Sources */,
 				804BEC7D2DE7F54F00979E19 /* RiskEngine.swift in Sources */,
+				807D183F2E22F07600855110 /* FeelingCategory.swift in Sources */,
 				807895B72DFBCA4C0078F2C9 /* MissedCheckInMonitor.swift in Sources */,
 				80209E892DDE3F2C00E01946 /* TutorialSliderView.swift in Sources */,
 				8051E3292DDB750C00EA6A48 /* UserProfile.swift in Sources */,
+				807D183D2E22ED6700855110 /* FeelingWordsStore.swift in Sources */,
+				807D18412E23005F00855110 /* SliderBlock.swift in Sources */,
 				8051E34F2DDB8E8200EA6A48 /* CopingSupportView.swift in Sources */,
 				8051E3392DDB75CF00EA6A48 /* JournalEntryView.swift in Sources */,
 				8051E33D2DDB760A00EA6A48 /* AlertUserPromptView.swift in Sources */,
 				804BEC7F2DE7FB0700979E19 /* AlertManager.swift in Sources */,
+				807D183B2E22EC9600855110 /* FeelingWord.swift in Sources */,
 				8051E33B2DDB75E000EA6A48 /* CheckInSummaryView.swift in Sources */,
 				8051E3702DDC0CB900EA6A48 /* CrisisSupportView.swift in Sources */,
 				8051E3622DDBAEEF00EA6A48 /* NotificationManager.swift in Sources */,

@@ -33,6 +33,9 @@ struct EditLifesaversView: View {
                     TextField("Phone Number", text: $phoneInput)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.phonePad)
+                        .onChange(of: phoneInput) { newValue in
+                            phoneInput = formatPhoneNumber(newValue)
+                        }
 
                     TextField("How will they recognize you?", text: $identifierNote)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -124,8 +127,8 @@ struct EditLifesaversView: View {
 
     // MARK: - Validation
     private var isInputValid: Bool {
-        !nameInput.isEmpty &&
         phoneInput.filter(\.isNumber).count == 10 &&
+        !nameInput.isEmpty &&
         !identifierNote.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
@@ -161,8 +164,7 @@ struct EditLifesaversView: View {
 
     private func loadContactForEditing(_ contact: TrustedContact) {
         nameInput = contact.name
-        phoneInput = contact.contactMethod
-            .replacingOccurrences(of: "Phone: ", with: "")
+        phoneInput = contact.contactMethod.replacingOccurrences(of: "Phone: ", with: "")
         identifierNote = contact.identifierNote ?? ""
         editingContactID = contact.id
     }
@@ -176,5 +178,22 @@ struct EditLifesaversView: View {
 
     private func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+
+    // MARK: - Phone Number Formatter
+    private func formatPhoneNumber(_ input: String) -> String {
+        let digits = input.filter(\.isNumber)
+        var result = ""
+
+        for (i, digit) in digits.enumerated() {
+            if i == 3 || i == 6 {
+                result.append("-")
+            }
+            if i < 10 {
+                result.append(digit)
+            }
+        }
+
+        return result
     }
 }

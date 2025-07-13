@@ -7,6 +7,8 @@ struct MentalHealthApp: App {
     @StateObject var lifesaverStore: LifesaverStore
     @StateObject var alertManager: AlertManager
 
+    @Environment(\.scenePhase) private var scenePhase
+
     init() {
         let store = LifesaverStore()
         _lifesaverStore = StateObject(wrappedValue: store)
@@ -21,12 +23,17 @@ struct MentalHealthApp: App {
                 .environmentObject(lifesaverStore)
                 .environmentObject(alertManager)
                 .onAppear {
+                    // Evaluate absence logic once per launch
                     let monitor = MissedCheckInMonitor(
                         checkInStore: checkInStore,
                         alertManager: alertManager,
                         userProfile: userProfileStore.profile
                     )
                     monitor.evaluateMissedCheckIns()
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                    // Ensure we re-evaluate check-in status when app resumes
+                    checkInStore.refreshCheckInStatus()
                 }
         }
     }

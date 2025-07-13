@@ -27,10 +27,12 @@ struct CheckInDetailView: View {
                     }
 
                     if !checkIn.feelings.isEmpty {
-                        labeled("Feelings", text: checkIn.feelings.joined(separator: ", "))
+                        let feelingWords = checkIn.feelings.map { $0.word }
+                        labeled("Feelings", text: feelingWords.joined(separator: ", "))
                     }
 
-                    if let journal = checkIn.journalText, !journal.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    if let journal = checkIn.journalText,
+                       !journal.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Journal Entry")
                                 .font(.headline)
@@ -96,10 +98,13 @@ struct CheckInDetailView: View {
         hopelessnessLevel: 7,
         feelsSafe: false,
         hasHarmThoughts: true,
-        feelings: ["Hopeless", "Tired"],
+        feelings: [
+            FeelingWord(word: "Hopeless", riskLevel: .high, category: .highRisk),
+            FeelingWord(word: "Tired", riskLevel: .moderate, category: .mildNegative)
+        ],
         journalText: "Not feeling great today.",
         journalImageData: nil
     )
 
-    return CheckInDetailView(checkIn: sample)
+    CheckInDetailView(checkIn: sample)
 }
